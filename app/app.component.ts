@@ -4,22 +4,22 @@ import {Product} from './product';
 
 @Component({
     selector: 'articles',
-    templateUrl: 'app/template.html'
+    template: ''
 })
 
 export class AppComponent {
-    days: string[];
-    abc: string;    
-    constructor() {
-        this.days = ['Pon', 'Wt', 'Srd', 'Czw', 'Pt', 'Sb', 'Nd'];
+    // days: string[];
+    // abc: string;    
+    // constructor() {
+    //     this.days = ['Pon', 'Wt', 'Srd', 'Czw', 'Pt', 'Sb', 'Nd'];
 
-        this.abc = this.showName();
-    }
-    showName() : string {
-        return "ABC";
-    }
+    //     this.abc = this.showName();
+    // }
+    // showName() : string {
+    //     return "ABC";
+    // }
     
 } 
 
-var product = new Product(123, "tytul", 69.69);
-product.showProduct();
+// var product = new Product(123, "tytul", 69.69);
+// product.showProduct();
