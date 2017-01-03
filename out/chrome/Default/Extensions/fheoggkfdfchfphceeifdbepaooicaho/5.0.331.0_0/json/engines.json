@@ -1,0 +1,354 @@
+{
+    "searchengines": 
+	[
+        {
+            "name": "yahoo",
+            "urlre": 
+			[
+                "^http(s)?:\\/\\/(([a-z][a-z]|chfr|chit|malaysia|espanol)\\.)?(yhs[0-9]\\.)?(www|search|myweb|myweb2|news\\.search|espanol\\.search|search\\.cn|one\\.cn)\\.yahoo\\.[a-z\\.]+\\/(search|custom|s|404handler|yhs)"
+            ],
+            "sourcetype": 2,
+            "stre": ["^https?:\\/\\/.+\\/.*[\\?&]p=([^&$]*)"],
+            "selectors": 
+			[
+                { "selector": "ul>li>h3>a", "parent": true, "inline": true },
+                { "selector": "ol>li>h3>a", "parent": true, "inline": true },
+                { "selector": "div>ul[class^=comp]>li>a", "parent": false, "inline": true },
+                { "selector": "div>h3.title>a", "parent": true, "inline": true },
+                { "selector": "ul>li.tc>a", "parent": false, "inline": true },
+                { "selector": "ul>li>h4>a", "parent": true, "inline": true },
+                { "selector": "ul>li>label>a", "parent": true, "inline": true },
+                { "selector": "h3>a", "parent": false, "hrefattr": ["data-href"], "inline": true },
+                { "selector": "p.txt>a", "parent": true, "inline": true },
+				{ "selector": "div.aTitle>p>a", "parent": true, "inline" : true,
+					"filterURI" :
+					{
+					   "filterType" : "0"   ,  
+					   "startsWith" : "/ru=",
+					   "endsWith"   :  "/rk="
+					} 
+				}
+            ]
+        },
+        {
+            "name": "google",
+            "urlre": 
+			[
+                "^(http|https):\\/\\/(w+|america|news|encrypted|www\\.l)\\.google\\.[a-z\\.]+\\/"
+            ],
+             "sourcetype": 1,
+            "stre": ["^https?:\\/\\/.+\\/.*[\\?&#]q=([^&#$]*)"],
+            "selectors": 
+			[
+                { "selector": "h3.r>a", "parent": true, "hrefattr": ["data-href"], "inline": true },
+                { "selector": "g-link>a", "parent": true, "hrefattr": ["data-href"], "inline": true },
+                { "selector": "div._I2>a", "parent": true, "hrefattr": ["data-href"], "inline": false }
+            ]
+        },
+        {
+            "name": "bing",
+            "urlre": 
+            [
+                "^http(s)?:\\/\\/(www|it|hk|jp|br|be|nz)\\.(bing|search)\\.(com|daum)(\\.net|\\/fbf)?\\/(news|search|bing\\?)",
+                "^http:\\/\\/www\\.msnbc\\.msn\\.com\\/\\?id"
+            ],
+            "sourcetype": 23,
+            "stre": ["^https?:\\/\\/.+\\/.*[\\?&]q=([^&$]*)"],
+            "selectors": 
+            [
+                { "selector": "ol>li>h2>a", "parent": true, "inline": true },
+                { "selector": "ul>li>h3>a", "parent": true, "inline": true }
+             ]
+        },
+        {
+            "name": "yandex",
+            "urlre": 
+			[
+				"^http(s)?:\\/\\/(www\\.)?yandex\\.(com|ru|by|kz|com\\.tr|ua)\\/search"
+			],
+            "sourcetype": 25,
+            "stre": ["^https?:\\/\\/.+\\/.*[\\?&]text=([^&$]*)"],
+            "selectors": 
+            [
+                { "selector": "div.serp-item>h2.serp-item__title>a", "parent": true, "inline": true },
+				{ "selector": "div.organic>h2.organic__title-wrapper>a", "parent": true, "inline": true }
+            ]
+        },
+        {
+            "name": "baidu",
+            "urlre": 
+			[
+				"^http(s)?:\\/\\/www\\.baidu\\.com"
+			],
+            "sourcetype": 9,
+            "stre": ["^https?:\\/\\/.+\\/.*[\\?&]wd=([^&$]*)"],
+            "selectors": 
+            [
+                { "selector": "h3[class^=t]>a", "parent": true, "inline": true }
+            ]
+        },
+        {
+            "name": "daum",
+            "urlre": 
+			[
+                "^https:\\/\\/(m.search.daum.net)/nate"
+            ],
+            "sourcetype": 20,
+            "stre"      : ["^https?:\\/\\/.+\\/.*[\\?&]q=([^&$]*)"],
+            "selectors": 
+            [
+                { "selector": "div.cont_inner>div[class^=wrap_tit]>a", "parent": false, "inline": true },
+                { "selector": "div.coll_cont>ul>li>a", "parent": false, "inline": true }
+            ]
+        },
+        {
+            "name": "facebook",
+            "urlre": 
+            [
+                "^http(s)?:\\/\\/(www|m)\\.facebook\\.com"
+            ],
+            "sourcetype": 28,
+            "stre"      : ["^https?:\\/\\/.+\\/.*[\\?&]q=([^&$]*)"],
+            "selectors": 
+            [
+                { "selector": "a", "hrefqstring" :  "u" , "excluderegex" : "^http(s)?:\\/\\/[^\\/?]*facebook\\.com" , "parent": false, "inline": false }
+            ]
+        },
+        {
+            "name": "ask",
+            "urlre": 
+            [
+                "^http:\\/\\/((www|search|ru|fr|de|uk|it|nl|es|eu|jp|br|ca|mx|pl|no|dk|se|us|au|in|ar|pt)\\.)?(uk\\.)?ask\\.(com|jp)\\/(web|pictures|news|videos|ref|ans)(\\.asp)?\\?"
+            ],
+            "sourcetype": 5,
+            "stre"      : ["^https?:\\/\\/.+\\/.*[\\?&]q=([^&$]*)"],
+            "selectors": 
+            [
+                { "selector": "h2[class^=web-result-]>a[class^=web-result-]", "parent": true, "inline": true },
+                { "selector": "div[class^=adStd]>div>a", "parent": true, "inline": true }
+            ]
+        },
+        {
+            "name": "aol",
+            "urlre": 
+            [
+                "(recherche|suche|search|search\\.cn)\\.aol\\.(jp|cn|fr|ca|com\\.mx|co\\.uk|de|in|com|com\\.au)\\/"
+            ],
+            "sourcetype": 4,
+            "stre"      : ["^https?:\\/\\/.+\\/.*[\\?&]q=([^&$]*)"],
+            "selectors": 
+            [
+                { "selector": "ul>li>h3[class=hac]>a", "parent": true, "inline": true },
+                { "selector": "div[class=ad]>div[class=title]>a", "parent": true, "inline": true },
+                { "selector": "div[class^=ad]>div>ul>li>a", "parent": true, "inline": true },
+                { "selector": "ul>li>div>h3[class=hac]>a", "parent": true, "inline": true },
+                { "selector": "div[class^=ad]>div[class=title]>a", "parent": true, "inline": true }
+            ]
+        },
+        {
+            "name": "uol",
+            "urlre": 
+            [
+                "^http:\\/\\/((mundo|brasil)\\.)?busca\\.uol\\.com\\.br\\/(((www|uol|br)\\/index\\.html\\?)|(buscar\\.html))?"
+            ],
+            "sourcetype": 6,
+            "stre"      : ["^https?:\\/\\/.+\\/.*[\\?&]q=([^&$]*)"],
+            "selectors": 
+            [
+                { "selector": "ul>li>dl>dt>a", "parent": true, "inline": true },
+                 { "selector": "div[class^=adD]>div>div>a", "parent": true, "inline": true }
+            ]
+        },
+        {
+            "name": "goo",
+            "urlre": 
+            [
+                "^http:\\/\\/search\\.goo\\.ne\\.jp\\/web\\.jsp\\?"
+            ],
+            "sourcetype": 7,
+            "stre"      : ["^http:\\/\\/search\\.goo\\.ne\\jp\\/web\\.jsp\\?"],
+            "selectors": 
+            [
+                { "selector": "div[class=result]>p[class^=title]>a", "parent": true, "inline": true }
+            ]
+        },
+        {
+            "name": "myway",
+            "urlre": 
+            [
+                "^http:\\/\\/(search|mysearch)\\.myway\\.com\\/(search|jsp)\\/(AJ|GG|AW|LS|GG)(main|web|advr)\\.(jsp|jhtml)"
+            ],
+            "sourcetype": 8,
+            "stre"      : ["^https?:\\/\\/.+\\/.*[\\?&]searchfor=([^&$]*)"],
+            "selectors": 
+            [
+                { "selector": "ol>li>div>a.algo-title", "parent": true, "inline": true }
+            ]
+        },
+        {
+            "name": "terra",
+            "urlre": 
+            [
+                "^http:\\/\\/(buscador|buscar)\\.terra\\.com\\.(br|mx|pe|co|ec|ve|es|ar)\\/((default|results)\\.aspx)?\\?(srchBak)?",
+                "^http:\\/\\/buscador\\.terra\\.(es|cl)\\/((default|results)\\.aspx)?\\?(srchBak)?", 
+                "^http:\\/\\/buscador\\.terra\\.com\\/((default|results)\\.aspx)?\\?(srchBak)?"
+            ],
+             "sourcetype": 11,
+            "stre"      : ["^https?:\\/\\/.+\\/.*[\\?&]query=([^&$]*)"],
+            "selectors": 
+            [
+                { "selector": "ul.lnkResults>li>a", "parent": false, "inline": true }
+            ]
+        },
+        {
+            "name": "xfinity",
+            "urlre": 
+            [
+                "^http:\\/\\/search.\\xfinity.com\\/(search)?\\?"
+            ],
+            "sourcetype": 12,
+            "stre"      : ["^https?:\\/\\/.+\\/.*[\\?&]q=([^&$]*)"],
+            "selectors": 
+            [
+                { "selector": "ol.sr>li>h3>a", "parent": false, "inline": true }
+            ]
+        },
+        {
+            "name": "web",
+            "urlre": 
+            [
+                "^http(s):\\/\\/suche\\.web\\.de\\/web"
+            ],
+            "sourcetype": 13,
+            "stre"      : ["^https?:\\/\\/.+\\/.*[\\?&]q=([^&$]*)"],
+            "selectors": 
+            [
+                { "selector": "ul>li>h3>a", "parent": false, "inline": true }
+            ]
+        },
+        {
+            "name": "biglobe",
+            "urlre": 
+            [
+                "^http:\\/\\/(stgrtrvl\\.)?cgi\\.search\\.biglobe\\.ne\\.jp\\/cgi-bin\\/"
+            ],
+            "sourcetype": 14,
+            "stre"      : ["^https?:\\/\\/.+\\/.*[\\?&]q=([^&$]*)"],
+            "selectors": 
+            [
+                { "selector": "ol>li>div>span>a", "parent": false, "inline": true },
+                { "selector": "li>div>div>h3>a", "parent": false, "inline": true }
+            ]
+        },
+        {
+            "name": "cox",
+            "urlre": 
+            [
+                "^http:\\/\\/[a-z]+\\.cox\\.net\\/cci\\/(search\\/)?google", 
+                "^http:\\/\\/[a-z0-9]+\\.cox\\.com\\/search"
+            ],
+            "sourcetype": 16,
+            "stre"      : ["^https?:\\/\\/.+\\/.*[\\?&]q=([^&$]*)"],
+            "selectors": 
+            [
+                { "selector": "div.col-content>div.external-search-result>h4>a", "parent": false, "inline": true }
+            ]
+        },
+        {
+            "name": "gmx",
+            "urlre": 
+            [
+                "^https:\\/\\/suche\\.gmx\\.net\\/web"
+            ],
+            "sourcetype": 17,
+            "stre"      : ["^https?:\\/\\/.+\\/.*[\\?&]q=([^&$]*)"],
+            "selectors": 
+            [
+                { "selector": "ul>li>h3>a", "parent": false, "inline": true },
+                { "selector": "div.advertLink>h3>a", "parent": false, "inline": true }
+            ]
+        },
+        {
+            "name": "excite",
+            "urlre": 
+            [
+                "^http:\\/\\/websearch\\.excite\\.co\\.jp"
+            ],
+            "sourcetype": 18,
+            "stre"      : ["^https?:\\/\\/.+\\/.*[\\?&]q=([^&$]*)"],
+            "selectors": 
+            [
+                { "selector": "ul>li>div.sourceDetails>h3.sourceTitle>a", "parent": false, "inline": true }
+            ]
+        },
+        {
+            "name": "sky",
+            "urlre": 
+            [
+                "^https:\\/\\/secure.search\\.sky\\.com?"
+            ],
+            "sourcetype": 19,
+            "stre"      : ["^https?:\\/\\/.+\\/.*[\\?&]query=([^&$]*)"],
+            "selectors": 
+            [
+                { "selector": "li>h3.title>a", "parent": false, "inline": true }
+            ]
+        },
+        {
+            "name": "naver",
+            "urlre": 
+            [
+                "^https:\\/\\/(web\\.)?search\\.naver\\.com\\/search\\.naver\\?"
+            ],
+            "sourcetype": 21,
+            "stre"      : ["^https?:\\/\\/.+\\/.*[\\?&]query=([^&$]*)"],
+            "selectors": 
+            [
+                { "selector": "dt.title_area>a", "parent": false, "inline": true },
+                { "selector": "li>dl>dt>a", "parent": false, "inline": true },
+                { "selector": "li.sh_blog_top>dl>dt>a", "parent": false, "inline": true }
+            ]
+        },
+        {
+            "name": "nifty",
+            "urlre": 
+            [
+                "^http:\\/\\/search\\.nifty\\.com\\/cgi\\-bin\\/search\\.cgi\\?", 
+                "^http:\\/\\/(azby\\.)?search\\.nifty\\.com\\/websearch\\/search"
+            ],
+            "sourcetype": 22,
+            "stre"      : ["^https?:\\/\\/.+\\/.*[\\?&]Text=([^&$]*)"],
+            "selectors": 
+            [
+                { "selector": "ul>li.first>a", "parent": false, "inline": true },
+                { "selector": "div.hd>h3>a", "parent": false, "inline": true }
+            ]
+        },
+        {
+            "name": "rakuten",
+            "urlre": 
+            [
+                "(http|https):\\/\\/(websearch|search)\\.rakuten\\.co\\.jp+"
+            ],
+            "sourcetype": 24,
+            "stre"      :["^https?:\\/\\/.+\\/.*\\/mall\\/([^\\/]+)\\/-\\", "^https?:\\/\\/.+\\/.*[\\?&]sitem=([^&$]*)"],
+            "selectors": 
+            [
+                { "selector": "ul.os-result>li>a.os-window", "parent": false, "inline": true }
+            ]
+        },
+        {
+            "name": "linkedin",
+            "urlre": 
+            [
+                "^http(s)?:\\/\\/www\\.linkedin\\.com"
+            ],
+            "sourcetype": 26,
+            "stre"      :[],
+            "selectors": 
+            [
+                { "selector": "p>a[data-trk=link]", "parent": false, "inline": true }
+            ]
+        }
+    ]
+}
